@@ -155,8 +155,6 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpCmdLine, 
 	}
 	Model::Release();
 	pRootJob->ReleaseSub();
-
-
 	Input::Release();
 	Direct3D::Release();
 	
@@ -170,7 +168,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 	case WM_DESTROY:
 		PostQuitMessage(0);  //ウィンドウが閉じられたらプログラム終了 これをなくすとプログラムが終了しない
 		return 0;
-	
 	}
 	return DefWindowProc(hWnd, msg, wParam, lParam);//ウィンドウの拡縮などのデフォルトの動き
 }
