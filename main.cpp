@@ -4,8 +4,10 @@
 #include"Engine/Camera.h"
 #include"Engine/Input.h"
 #include"Engine/RootJob.h"
+//#include"Engine/Texture.h"
 #include"Engine/GameObject.h"
 #include"Engine/Model.h"
+#include "Engine/Quad.h"
 
 #pragma comment(lib, "winmm.lib")
 //定数宣言
@@ -16,6 +18,7 @@ const int WINDOW_HEIGHT = 600; //ウィンドウの高さ
 float R;
 
 RootJob* pRootJob = nullptr;
+Quad* pQuad = nullptr;
 
 //プロトタイプ宣言(ウィンドウプロシージャ)
 LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
@@ -77,6 +80,14 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpCmdLine, 
 	//DirectInputの初期化
 	Input::Initialize(hWnd);
 
+	//Texture
+	//pTexture = new Texture(nullptr);
+	//pTexture->Initialize();
+
+	//Quad
+	//pQuad = new Quad(nullptr);
+	//pQuad->Initialize();
+	
 	//RootJob
 	pRootJob = new RootJob(nullptr);
 	pRootJob->Initialize();

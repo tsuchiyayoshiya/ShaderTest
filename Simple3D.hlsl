@@ -72,5 +72,5 @@ float4 PS(VS_OUT inData) : SV_Target
 	
 	
 	return diffuse + ambient;
-	}
+}
 	
