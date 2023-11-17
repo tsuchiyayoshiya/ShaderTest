@@ -3,13 +3,15 @@
 
 
 //■■シーンを管理するクラス
-class Stage : public GameObject
+class Ground : public GameObject
 {
 	int hModel_;    //モデル番号
+	int fModel_;
+	int gModel_ = -1;
 public:
 	//コンストラクタ
 	//引数：parent  親オブジェクト（SceneManager）
-	Stage(GameObject* parent);
+	Ground(GameObject* parent);
 
 	//初期化
 	void Initialize() override;

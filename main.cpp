@@ -18,7 +18,7 @@ const int WINDOW_HEIGHT = 600; //ウィンドウの高さ
 float R;
 
 RootJob* pRootJob = nullptr;
-Quad* pQuad = nullptr;
+//Quad* pQuad = nullptr;
 
 //プロトタイプ宣言(ウィンドウプロシージャ)
 LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
@@ -154,14 +154,7 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpCmdLine, 
 			Direct3D::BeginDraw();
 			pRootJob->DrawSub();
 			
-			
-			
-			
-			
-			Direct3D::EndDraw();
-			
-			
-
+			Direct3D::EndDraw();			
 		}
 	}
 	Model::Release();

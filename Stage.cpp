@@ -11,7 +11,7 @@ void Stage::Initialize()
 {
 	//モデルデータのロード
 	//hModel_ = Model::Load("Assets\\BoxDefault.fbx");
-	hModel_ = Model::Load("Assets\\Arrow.fbx");
+	//hModel_ = Model::Load("Assets\\Arrow.fbx");
 	assert(hModel_ >= 0);
 }
 
@@ -31,4 +31,9 @@ void Stage::Draw()
 //開放
 void Stage::Release()
 {
+}
+
+void Stage::Arrow()
+{
+
 }
