@@ -12,7 +12,6 @@ void Ground::Initialize()
 	
 	//モデルデータのロード
 	gModel_ = Model::Load("Assets\\Ground.fbx");
-
 	fModel_ = Model::Load("Assets\\Ball.fbx");
 	
 	assert(gModel_ >= 0);
