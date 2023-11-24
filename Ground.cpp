@@ -12,10 +12,14 @@ void Ground::Initialize()
 	
 	//モデルデータのロード
 	gModel_ = Model::Load("Assets\\Ground.fbx");
-	hModel_ = Model::Load("Assets\\Arrow.fbx");
+
 	fModel_ = Model::Load("Assets\\Ball.fbx");
 	
-	assert(hModel_ >= 0);
+	assert(gModel_ >= 0);
+	assert(fModel_ >= 0);
+
+	
+
 }
 
 //更新
@@ -27,15 +31,22 @@ void Ground::Update()
 //描画
 void Ground::Draw()
 {
+	Transform xt ,zt;
+
+	xt.rotate_.y = 0;
+	xt.scale_ = { 8,8,8 };
+	xt.position_.y = -1;
+
+	zt.scale_ = { 1,1,1 };
+	zt.rotate_.y = 0;
+	zt.position_.y = 2;
+
 	
 	
-	Model::SetTransform(hModel_, transform_);
-	Model::Draw(hModel_);
-	
-	Model::SetTransform(gModel_, transform_);
+	Model::SetTransform(gModel_, xt);
 	Model::Draw(gModel_);
 
-	Model::SetTransform(fModel_, transform_);
+	Model::SetTransform(fModel_, zt);
 	Model::Draw(fModel_);
 }
 
