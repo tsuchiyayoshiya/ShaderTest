@@ -6,6 +6,7 @@
 class Arrow : public GameObject
 {
 	int hModel_;    //モデル番号
+	int num;
 public:
 	//コンストラクタ
 	//引数：parent  親オブジェクト（SceneManager）

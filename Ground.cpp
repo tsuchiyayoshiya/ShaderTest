@@ -8,17 +8,13 @@ Ground::Ground(GameObject* parent)
 
 //初期化
 void Ground::Initialize()
-{
-	
+{	
 	//モデルデータのロード
 	gModel_ = Model::Load("Assets\\Ground.fbx");
 	fModel_ = Model::Load("Assets\\Ball.fbx");
 	
 	assert(gModel_ >= 0);
 	assert(fModel_ >= 0);
-
-	
-
 }
 
 //更新
@@ -30,22 +26,20 @@ void Ground::Update()
 //描画
 void Ground::Draw()
 {
-	Transform xt ,zt;
+	Transform gt ,bt;
 
-	xt.rotate_.y = 0;
-	xt.scale_ = { 8,8,8 };
-	xt.position_.y = -1;
+	gt.rotate_.y = 0;
+	gt.scale_ = { 8,8,8 };
+	gt.position_.y = -1;
 
-	zt.scale_ = { 1,1,1 };
-	zt.rotate_.y = 0;
-	zt.position_.y = 2;
-
+	bt.scale_ = { 1,1,1 };
+	bt.rotate_.y = 0;
+	bt.position_.x = 3;
 	
-	
-	Model::SetTransform(gModel_, xt);
+	Model::SetTransform(gModel_, gt);
 	Model::Draw(gModel_);
 
-	Model::SetTransform(fModel_, zt);
+	Model::SetTransform(fModel_, bt);
 	Model::Draw(fModel_);
 }
 
