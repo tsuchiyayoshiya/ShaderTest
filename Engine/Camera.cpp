@@ -1,5 +1,5 @@
 #include "Camera.h"
-
+//#pragma warning(default:4716)
 namespace Camera {
 	//変数
 	XMVECTOR position_;	//カメラの位置（視点）
@@ -50,7 +50,7 @@ void Camera::SetTarget(XMFLOAT3 target)
 
 XMVECTOR Camera::GetPosition()
 {
-
+	return (position_);
 }
 
 //ビュー行列を取得
