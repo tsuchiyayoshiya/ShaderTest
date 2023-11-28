@@ -12,7 +12,7 @@ cbuffer global
 {
 	float4x4	matWVP;			// ワールド・ビュー・プロジェクションの合成行列
 	float4x4	matW;	//ワールド行列
-	float4		diffuseColor;		// ディフューズカラー（マテリアルの色）
+	float4	diffuseColor;		// ディフューズカラー（マテリアルの色）
 	bool		isTexture;		// テクスチャ貼ってあるかどうか
 };
 
