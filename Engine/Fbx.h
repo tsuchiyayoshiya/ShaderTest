@@ -52,7 +52,6 @@ class Fbx
 	vector<int>index_Count_;
 
 public:
-
 	Fbx();
 	HRESULT Load(std::string fileName);
 	void    InitVertex(fbxsdk::FbxMesh* mesh);
