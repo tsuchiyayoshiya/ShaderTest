@@ -31,11 +31,11 @@ void Arrow::Draw()
 	 
 	xt.scale_ = { 1.5,1,1 };
 	xt.rotate_.y = 90;
-	xt.position_.y = 0;
+	xt.position_.z = -1.5;
 
 	yt.scale_ = { 1.5,1,1 };
 	yt.rotate_.z = 90;
-	yt.position_.y = 0;
+	yt.position_.y = 1;
 
 	transform_.position_.x = 1.2f;
 	Model::SetTransform(hModel_, transform_);

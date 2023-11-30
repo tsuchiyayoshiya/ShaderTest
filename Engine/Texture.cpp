@@ -27,7 +27,7 @@ HRESULT Texture::Load(std::string fileName)
 	{
 		return E_NOTIMPL;
 	}
-
+	//ƒTƒ“ƒvƒ‰[‚Ìì¬
 	D3D11_SAMPLER_DESC  SamDesc;
 	ZeroMemory(&SamDesc, sizeof(D3D11_SAMPLER_DESC));
 	SamDesc.Filter = D3D11_FILTER_MIN_MAG_MIP_LINEAR;
