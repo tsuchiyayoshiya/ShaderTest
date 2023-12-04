@@ -58,7 +58,12 @@ XMMATRIX Camera::GetViewMatrix()
 {
 	return (viewMatrix_);
 }
-
+/*
+XMMATRIX Camera::GetEyePosition()
+{
+	return (position_);
+}
+*/
 //プロジェクション行列を取得
 XMMATRIX Camera::GetProjectionMatrix()
 {
