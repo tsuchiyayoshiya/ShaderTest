@@ -59,7 +59,7 @@ XMMATRIX Camera::GetViewMatrix()
 	return (viewMatrix_);
 }
 /*
-XMMATRIX Camera::GetEyePosition()
+XMMATRIX Camera::GetCamPosition()
 {
 	return (position_);
 }
