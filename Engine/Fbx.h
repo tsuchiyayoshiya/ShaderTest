@@ -31,6 +31,7 @@ class Fbx
 		XMFLOAT4	diffuseColor;		// ディフューズカラー（マテリアルの色）
 		XMFLOAT4    lightDirection;
 		XMFLOAT4    eyePos;
+		XMFLOAT4    lightPosition;
 		BOOL		isTextured;		// テクスチャ貼ってあるかどうか
 	};
 
