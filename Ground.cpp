@@ -10,11 +10,15 @@ Ground::Ground(GameObject* parent)
 void Ground::Initialize()
 {	
 	//モデルデータのロード
+	hModel_ = Model::Load("Assets\\Donut.fbx");
+	//hModel_ = Model::Load("Assets\\Arrow.fbx");
+
 	gModel_ = Model::Load("Assets\\Ground.fbx");
 	fModel_ = Model::Load("Assets\\Ball3.fbx");
 	
 	assert(gModel_ >= 0);
 	assert(fModel_ >= 0);
+	assert(hModel_ >= 0);
 }
 
 //更新
@@ -36,11 +40,14 @@ void Ground::Draw()
 	bt.rotate_.y = 0;
 	bt.position_.x = 3;
 	
-	Model::SetTransform(gModel_, gt);
-	Model::Draw(gModel_);
+	//Model::SetTransform(gModel_, gt);
+	//Model::Draw(gModel_);
 
-	Model::SetTransform(fModel_, bt);
-	Model::Draw(fModel_);
+	//Model::SetTransform(fModel_, bt);
+	//Model::Draw(fModel_);
+
+	Model::SetTransform(hModel_, transform_);
+	Model::Draw(hModel_);
 }
 
 //開放
