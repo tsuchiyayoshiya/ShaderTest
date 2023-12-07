@@ -21,9 +21,14 @@ class Fbx
 	//マテリアル
 	struct MATERIAL
 	{
-		Texture* pTexture;
-		XMFLOAT4	diffuse;
-	};
+		DWORD		polygonCount;		//マテリアルのポリゴン数
+		XMFLOAT4	diffuse;			//拡散反射光（ディフューズ）への反射強度
+		XMFLOAT4	ambient;			//環境光（アンビエント）への反射強度
+		XMFLOAT4	specular;			//鏡面反射光（スペキュラ）への反射強度
+		float		shininess;			//ハイライトの強さ（サイズ）
+		Texture* pTexture;			//テクスチャ
+	}*pMaterial_;
+
 	struct CONSTANT_BUFFER
 	{
 		XMMATRIX	matWVP;
@@ -34,6 +39,10 @@ class Fbx
 		XMFLOAT4    eyePos;
 		XMFLOAT4    lightPosition;
 		BOOL		isTextured;		// テクスチャ貼ってあるかどうか
+		XMFLOAT4    diffuse;
+		XMFLOAT4    ambient;
+		XMFLOAT4    specular;
+		FLOAT       shininess;
 	};
 
 	struct VERTEX
@@ -60,6 +69,7 @@ public:
 	void    InitIndex(fbxsdk::FbxMesh* mesh);
 	void    IntConstantBuffer();	//コンスタントバッファ準備
 	void    InitMaterial(fbxsdk::FbxNode* pNode);
+	void    InitTexture(fbxsdk::FbxSurfaceMaterial* pMaterial, const DWORD& i);	//テクスチャ準備
 	void    Draw(Transform& transform);
 	void    Release();
 };
