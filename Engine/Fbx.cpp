@@ -215,8 +215,8 @@ void Fbx::InitMaterial(fbxsdk::FbxNode* pNode)
 
 void InitTexture(fbxsdk::FbxSurfaceMaterial* pMaterial, const DWORD& i)
 {
+	//for (DWORD i = 0; i < materialCount_; i++)
 	pMaterial_[i].pTexture = nullptr;
-
 
 	// テクスチャー情報の取得
 	FbxProperty  lProperty = pMaterial->FindProperty(FbxSurfaceMaterial::sDiffuse);
@@ -264,6 +264,10 @@ void    Fbx::Draw(Transform& transform)
 		cb.diffuseColor = pMaterialList_[i].diffuse;
 		cb.isTextured = pMaterialList_[i].pTexture != nullptr;
 		cb.lightPosition = Light;
+		cb.ambient = pMaterial_[i].ambient;
+		cb.diffuse = pMaterial_[i].diffuse;
+		cb.speculer = pMaterial_[i].specular;
+		cb.shininess = pMaterial_[i].shininess;
 		XMStoreFloat4(&cb.eyePos,Camera::GetPosition());
 
 		D3D11_MAPPED_SUBRESOURCE pdata;

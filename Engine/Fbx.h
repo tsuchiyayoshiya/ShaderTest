@@ -41,7 +41,7 @@ class Fbx
 		BOOL		isTextured;		// テクスチャ貼ってあるかどうか
 		XMFLOAT4    diffuse;
 		XMFLOAT4    ambient;
-		XMFLOAT4    specular;
+		XMFLOAT4    speculer;
 		FLOAT       shininess;
 	};
 
