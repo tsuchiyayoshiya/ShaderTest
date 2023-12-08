@@ -213,7 +213,7 @@ void Fbx::InitMaterial(fbxsdk::FbxNode* pNode)
 
 }
 
-void InitTexture(fbxsdk::FbxSurfaceMaterial* pMaterial, const DWORD& i)
+void Fbx::InitTexture(fbxsdk::FbxSurfaceMaterial* pMaterial, const DWORD& i)
 {
 	//for (DWORD i = 0; i < materialCount_; i++)
 	pMaterial_[i].pTexture = nullptr;
@@ -234,12 +234,8 @@ void InitTexture(fbxsdk::FbxSurfaceMaterial* pMaterial, const DWORD& i)
 		_splitpath_s(texture->GetRelativeFileName(), nullptr, 0, nullptr, 0, name, _MAX_FNAME, ext, _MAX_EXT);
 		wsprintf(name, "%s%s", name, ext);
 
-
-
 		pMaterial_[i].pTexture = new Texture;
 		pMaterial_[i].pTexture->Load(name);
-
-
 	}
 }
 
@@ -261,14 +257,17 @@ void    Fbx::Draw(Transform& transform)
 		cb.matWVP = XMMatrixTranspose(transform.GetWorldMatrix() * Camera::GetViewMatrix() * Camera::GetProjectionMatrix());
 		cb.matNormal = XMMatrixTranspose(transform.GetWorldMatrix());
 		cb.matW = XMMatrixTranspose(transform.GetNormalMatrix());
-		cb.diffuseColor = pMaterialList_[i].diffuse;
-		cb.isTextured = pMaterialList_[i].pTexture != nullptr;
+		cb.diffuseColor = pMaterial_[i].diffuse;
+		cb.isTextured = pMaterial_[i].pTexture != nullptr;
 		cb.lightPosition = Light;
-		cb.ambient = pMaterial_[i].ambient;
-		cb.diffuse = pMaterial_[i].diffuse;
-		cb.speculer = pMaterial_[i].specular;
-		cb.shininess = pMaterial_[i].shininess;
+		//cb.ambient = pMaterial_[i].ambient;
+		//cb.diffuse = pMaterial_[i].diffuse;
+		//cb.speculer = pMaterial_[i].specular;
+		//cb.shininess = pMaterial_[i].shininess;
 		XMStoreFloat4(&cb.eyePos,Camera::GetPosition());
+
+		
+
 
 		D3D11_MAPPED_SUBRESOURCE pdata;
 		Direct3D::pContext_->Map(pConstantBuffer_, 0, D3D11_MAP_WRITE_DISCARD, 0, &pdata);	// GPUからのデータアクセスを止める
@@ -290,12 +289,12 @@ void    Fbx::Draw(Transform& transform)
 		Direct3D::pContext_->VSSetConstantBuffers(0, 1, &pConstantBuffer_);	//頂点シェーダー用	
 		Direct3D::pContext_->PSSetConstantBuffers(0, 1, &pConstantBuffer_);	//ピクセルシェーダー用
 
-		if (pMaterialList_[i].pTexture)
+		if (pMaterial_[i].pTexture)
 		{
-			ID3D11SamplerState* pSampler = pMaterialList_[i].pTexture->GetSampler();
+			ID3D11SamplerState* pSampler = pMaterial_[i].pTexture->GetSampler();
 			Direct3D::pContext_->PSSetSamplers(0, 1, &pSampler);
 
-			ID3D11ShaderResourceView* pSRV = pMaterialList_[i].pTexture->GetSRV();
+			ID3D11ShaderResourceView* pSRV = pMaterial_[i].pTexture->GetSRV();
 			Direct3D::pContext_->PSSetShaderResources(0, 1, &pSRV);
 		}
 		
