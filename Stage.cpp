@@ -11,7 +11,7 @@ void Stage::IntConstantBuffer()
 {
 	CBUFF_STAGESCENE cb;
 	cb.lightPosition = lightSourcePosition_;
-	//Direct3D::pContext_->UpdateSubresource(pCBStageScene_, 0, NULL, &cb, 1, 1);
+	Direct3D::pContext_->UpdateSubresource(pCBStageScene_, 0, NULL, &cb, 1, 1);
 
 	Direct3D::pContext_->VSSetConstantBuffers(1, 1, &pCBStageScene_);
 	Direct3D::pContext_->PSSetConstantBuffers(1, 1, &pCBStageScene_);
