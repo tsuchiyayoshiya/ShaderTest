@@ -206,7 +206,6 @@ void Fbx::InitMaterial(fbxsdk::FbxNode* pNode)
 			pMaterial_[i].shininess = (float)pPhong->Shininess;
 		}
 
-
 		InitTexture(pMaterial, i);
 
 	}
