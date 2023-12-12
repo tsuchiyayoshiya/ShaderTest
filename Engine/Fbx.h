@@ -12,10 +12,18 @@
 
 using std::vector;
 
+enum RENDER_STATE
+{
+	RENDER_DIRLIGHT,
+	RENDER_PNTLIGHT,
+};
+
 #pragma comment(lib, "LibFbxSDK-MD.lib")
 #pragma comment(lib, "LibXml2-MD.lib")
 #pragma comment(lib, "zlib-MD.lib")
 //class Texture;//ポインタならこれでOK(ヘッダをインクルードしなくていい)
+
+class Texture;
 class Fbx
 {
 	//マテリアル
@@ -60,7 +68,7 @@ class Fbx
 	ID3D11Buffer* pConstantBuffer_;
 	MATERIAL* pMaterialList_;
 	vector<int>index_Count_;
-
+	RENDER_STATE state_;
 public:
 	Fbx();
 	HRESULT Load(std::string fileName);
