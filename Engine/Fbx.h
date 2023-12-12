@@ -68,7 +68,7 @@ public:
 	void    InitIndex(fbxsdk::FbxMesh* mesh);
 	void    IntConstantBuffer();	//コンスタントバッファ準備
 	void    InitMaterial(fbxsdk::FbxNode* pNode);
-	void    InitTexture(fbxsdk::FbxSurfaceMaterial* pMaterial, const DWORD& i);	//テクスチャ準備
+	//void    InitTexture(fbxsdk::FbxSurfaceMaterial* pMaterial, const DWORD& i);	//テクスチャ準備
 	void    Draw(Transform& transform);
 	void    Release();
 };

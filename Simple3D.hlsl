@@ -58,7 +58,7 @@ VS_OUT VS(float4 pos : POSITION, float4 uv : TEXCOORD, float4 normal : NORMAL)
 	normal = normalize(normal);
 	outData.normal = normal;
 
-	float4 light = normalize(normal);
+	float4 light = normalize(lightPosition);
 	light = normalize(light);
 
 	outData.color = saturate(dot(normal, light));

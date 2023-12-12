@@ -18,12 +18,13 @@ void Stage::IntConstantBuffer()
 	cb.MiscFlags = 0;
 	cb.StructureByteStride = 0;
 	cb.CPUAccessFlags = 0;
-
-	Direct3D::pContext_->UpdateSubresource(pCBStageScene_, 
-		0, NULL, &cb, 0 , 0);
-
-	Direct3D::pContext_->VSSetConstantBuffers(1, 1, &pCBStageScene_);
-	Direct3D::pContext_->PSSetConstantBuffers(1, 1, &pCBStageScene_);
+	// コンスタントバッファの作成
+	HRESULT hr;
+	hr = Direct3D::pDevice_->CreateBuffer(&cb, nullptr, &pCBStageScene_);
+	if (FAILED(hr))
+	{
+		MessageBox(NULL, "コンスタントバッファの作成に失敗しました", "エラー", MB_OK);
+	}
 }
 
 //初期化
@@ -39,6 +40,12 @@ void Stage::Initialize()
 void Stage::Update()
 {
 	transform_.rotate_.y += 0.5f;
+	CBUFF_STAGESCENE cb;
+	Direct3D::pContext_->UpdateSubresource(pCBStageScene_,
+		0, NULL, &cb, 0, 0);
+
+	Direct3D::pContext_->VSSetConstantBuffers(1, 1, &pCBStageScene_);
+	Direct3D::pContext_->PSSetConstantBuffers(1, 1, &pCBStageScene_);
 }
 
 //描画
