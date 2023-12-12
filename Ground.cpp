@@ -9,10 +9,7 @@ Ground::Ground(GameObject* parent)
 //初期化
 void Ground::Initialize()
 {	
-	//モデルデータのロード
 	hModel_ = Model::Load("Assets\\Donut.fbx");
-	//hModel_ = Model::Load("Assets\\Arrow.fbx");
-
 	gModel_ = Model::Load("Assets\\Ground.fbx");
 	fModel_ = Model::Load("Assets\\Ball3.fbx");
 	

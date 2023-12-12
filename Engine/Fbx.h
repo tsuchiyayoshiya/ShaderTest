@@ -67,7 +67,7 @@ class Fbx
 	ID3D11Buffer** pIndexBuffer_;
 	ID3D11Buffer* pConstantBuffer_;
 	MATERIAL* pMaterialList_;
-	vector<int>index_Count_;
+	vector<int>indexCount_;
 	RENDER_STATE state_;
 public:
 	Fbx();
@@ -76,7 +76,6 @@ public:
 	void    InitIndex(fbxsdk::FbxMesh* mesh);
 	void    IntConstantBuffer();	//コンスタントバッファ準備
 	void    InitMaterial(fbxsdk::FbxNode* pNode);
-	//void    InitTexture(fbxsdk::FbxSurfaceMaterial* pMaterial, const DWORD& i);	//テクスチャ準備
 	void    Draw(Transform& transform);
 	void    Release();
 };

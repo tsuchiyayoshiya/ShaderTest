@@ -37,7 +37,6 @@ HRESULT Spirete::Initialize()
 	{
 		MessageBox(nullptr, "インデックスバッファの作成に失敗しました", "エラー", MB_OK);
 		return hr;
-
 	}
 
 	hr = CreateConstantBuffer();
