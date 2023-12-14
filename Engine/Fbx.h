@@ -44,13 +44,8 @@ class Fbx
 		XMFLOAT4	diffuseColor;		// ディフューズカラー（マテリアルの色）
 		XMFLOAT4	ambientColor;
 		XMFLOAT4	specularColor;
-		///XMFLOAT4    eyePos;
 		XMFLOAT4    lightPosition;
 		BOOL		isTextured;		// テクスチャ貼ってあるかどうか
-		//XMFLOAT4    diffuse;
-		//XMFLOAT4    ambient;
-	//	XMFLOAT4    speculer;
-		//FLOAT       shininess;
 	};
 
 	struct VERTEX
