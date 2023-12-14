@@ -31,9 +31,9 @@ void Stage::IntConstantBuffer()
 void Stage::Initialize()
 {
 	//モデルデータのロード
-	//hModel_ = Model::Load("Assets\\BoxDefault.fbx");
+	hModel_ = Model::Load("Assets\\BoxDefault.fbx");
 	//hModel_ = Model::Load("Assets\\Arrow.fbx");
-	//assert(hModel_ >= 0);
+	assert(hModel_ >= 0);
 }
 
 //更新
