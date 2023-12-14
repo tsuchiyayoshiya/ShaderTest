@@ -19,19 +19,20 @@ void Stage::IntConstantBuffer()
 	cb.StructureByteStride = 0;
 	cb.CPUAccessFlags = 0;
 	// コンスタントバッファの作成
-	HRESULT hr;
-	hr = Direct3D::pDevice_->CreateBuffer(&cb, nullptr, &pCBStageScene_);
-	if (FAILED(hr))
-	{
-		MessageBox(NULL, "コンスタントバッファの作成に失敗しました", "エラー", MB_OK);
-	}
+	//HRESULT hr;
+	//hr = Direct3D::pDevice_->CreateBuffer(&cb, nullptr, &pCBStageScene_);
+	//if (FAILED(hr))
+	//{
+	//	MessageBox(NULL, "コンスタントバッファの作成に失敗しました", "エラー", MB_OK);
+	//}
 }
 
 //初期化
 void Stage::Initialize()
 {
+	hModel_ = Model::Load("Assets\\Donut.fbx");
 	//モデルデータのロード
-	hModel_ = Model::Load("Assets\\BoxDefault.fbx");
+	//hModel_ = Model::Load("Assets\\BoxDefault.fbx");
 	//hModel_ = Model::Load("Assets\\Arrow.fbx");
 	assert(hModel_ >= 0);
 }
@@ -43,6 +44,8 @@ void Stage::Update()
 	CBUFF_STAGESCENE cb;
 	Direct3D::pContext_->UpdateSubresource(pCBStageScene_,
 		0, NULL, &cb, 0, 0);
+	cb.lightPosition = lightSourcePosition_;
+	cb.eyePos ;
 
 	Direct3D::pContext_->VSSetConstantBuffers(1, 1, &pCBStageScene_);
 	Direct3D::pContext_->PSSetConstantBuffers(1, 1, &pCBStageScene_);
@@ -58,9 +61,4 @@ void Stage::Draw()
 //開放
 void Stage::Release()
 {
-}
-
-void Stage::Arrow()
-{
-
 }
