@@ -40,6 +40,7 @@ void Stage::Initialize()
 //XV
 void Stage::Update()
 {
+
 	transform_.rotate_.y += 0.5f;
 	CBUFF_STAGESCENE cb;
 	Direct3D::pContext_->UpdateSubresource(pCBStageScene_,
