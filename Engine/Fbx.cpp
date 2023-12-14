@@ -169,17 +169,26 @@ void Fbx::InitMaterial(fbxsdk::FbxNode* pNode)
 	for (int i = 0; i < materialCount_; i++)
 	{
 		//i番目のマテリアル情報を取得
-		FbxSurfacePhong* pMaterial = (FbxSurfacePhong *)(pNode->GetMaterial(i));
+		FbxSurfaceMaterial* pMaterial = pNode->GetMaterial(i);
+		FbxSurfacePhong* pPhong = (FbxSurfacePhong*)pMaterial;
 
-		FbxDouble3 diffuse = pMaterial->Diffuse;
-		FbxDouble3 ambient = pMaterial->Ambient;
+		FbxDouble3 diffuse = pPhong->Diffuse;
+		FbxDouble3 ambient = pPhong->Ambient;
+		//FbxDouble3 specular = pPhong->Ambient;
+
+		pMaterialList_[i].ambient = XMFLOAT4((float)ambient[0], (float)ambient[1], (float)ambient[2], 1.0f);
+		pMaterialList_[i].diffuse = XMFLOAT4((float)diffuse[0], (float)diffuse[1], (float)diffuse[2], 1.0f);
+		//pMaterialList_[i].specular = XMFLOAT4(0, 0, 0, 0);
+//		pMaterial_[i].shininess = 0;
 
 		if (pMaterial->GetClassId().Is(FbxSurfacePhong::ClassId)) {
-			FbxDouble3 specular = pMaterial->Specular;
-			FbxDouble shiness = pMaterial->Shininess;
+			FbxDouble3 specular = pPhong->Specular;
+			pMaterialList_[i].specular = XMFLOAT4((float)specular[0], (float)specular[1], (float)specular[2], 1.0f);
+			//FbxDouble shiness = pPhong->Shininess;
 		}
 
-		pMaterialList_[i].diffuse = XMFLOAT4{ (float)diffuse[0],(float)diffuse[1], (float)diffuse[2],0 };
+		//pMaterialList_[i].diffuse = XMFLOAT4{ (float)diffuse[0],(float)diffuse[1], (float)diffuse[2],0 };
+		
 		//テクスチャ情報
 		FbxProperty  lProperty = pMaterial->FindProperty(FbxSurfaceMaterial::sDiffuse);
 
@@ -228,34 +237,38 @@ void Fbx::Draw(Transform& transform)
 	for (int i = 0; i < materialCount_; i++)
 	{
 		//コンスタントバッファに情報を渡す
-		D3D11_BUFFER_DESC cb;
+		CONSTANT_BUFFER cb;
 		cb.matWVP = XMMatrixTranspose(transform.GetWorldMatrix() * Camera::GetViewMatrix() * Camera::GetProjectionMatrix());
 		cb.matNormal = XMMatrixTranspose(transform.GetNormalMatrix());
 		cb.matW = XMMatrixTranspose(transform.GetWorldMatrix());
+
+
 		cb.diffuseColor = pMaterialList_[i].diffuse;
+		cb.ambientColor = pMaterialList_[i].ambient;
+		cb.specularColor = pMaterialList_[i].specular;
+		
 		//cb.lightPosition = lightSourcePosition_;
 		//XMStoreFloat4(&cb.eyePos,Camera::GetEyePosition());
 		//int n = (int)(pMaterialList_[i].pTexture != nullptr);
 		//cb.isTextured = { n,n,n,n };
+
 		cb.isTextured = pMaterialList_[i].pTexture != nullptr;
 
 
 		//D3D11_MAPPED_SUBRESOURCE pdata;
 		//Direct3D::pContext_->Map(pConstantBuffer_, 0, D3D11_MAP_WRITE_DISCARD, 0, &pdata);	// GPUからのデータアクセスを止める
 		//memcpy_s(pdata.pData, pdata.RowPitch, (void*)(&cb), sizeof(cb));	// データを値を送る
-
 		//Direct3D::pContext_->Unmap(pConstantBuffer_, 0);	//再開
 
 		Direct3D::pContext_->UpdateSubresource(pConstantBuffer_, 0, NULL, &cb, 0, 0);
 
 		//頂点バッファ、インデックスバッファ、コンスタントバッファをパイプラインにセット
 		//頂点バッファ
+
 		UINT stride = sizeof(VERTEX);
 		UINT offset = 0;
 		Direct3D::pContext_->IASetVertexBuffers(0, 1, &pVertexBuffer_, &stride, &offset);
 
-
-		// インデックスバッファーをセット
 		stride = sizeof(int);
 		offset = 0;
 		Direct3D::pContext_->IASetIndexBuffer(pIndexBuffer_[i], DXGI_FORMAT_R32_UINT, 0);
@@ -263,7 +276,6 @@ void Fbx::Draw(Transform& transform)
 		//コンスタントバッファ
 		Direct3D::pContext_->VSSetConstantBuffers(0, 1, &pConstantBuffer_);	//頂点シェーダー用	
 		Direct3D::pContext_->PSSetConstantBuffers(0, 1, &pConstantBuffer_);	//ピクセルシェーダー用
-
 
 		if (pMaterialList_[i].pTexture)
 		{
@@ -276,9 +288,10 @@ void Fbx::Draw(Transform& transform)
 
 		//描画
 		Direct3D::pContext_->DrawIndexed(indexCount_[i], 0, 0);
+	}
 }
 
-void    Fbx::Release()
+void Fbx::Release()
 {
 	//SAFE_RELEASE(pConstantBuffer_);
 	//SAFE_RELEASE(pIndexBuffer_);

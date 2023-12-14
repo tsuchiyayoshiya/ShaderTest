@@ -33,7 +33,6 @@ class Fbx
 		XMFLOAT4	diffuse;			//拡散反射光（ディフューズ）への反射強度
 		XMFLOAT4	ambient;			//環境光（アンビエント）への反射強度
 		XMFLOAT4	specular;			//鏡面反射光（スペキュラ）への反射強度
-		float		shininess;			//ハイライトの強さ（サイズ）
 		Texture* pTexture;			//テクスチャ
 	}*pMaterial_;
 
@@ -43,13 +42,15 @@ class Fbx
 		XMMATRIX	matNormal;
 		XMMATRIX	matW;
 		XMFLOAT4	diffuseColor;		// ディフューズカラー（マテリアルの色）
-		XMFLOAT4    eyePos;
+		XMFLOAT4	ambientColor;
+		XMFLOAT4	specularColor;
+		///XMFLOAT4    eyePos;
 		XMFLOAT4    lightPosition;
 		BOOL		isTextured;		// テクスチャ貼ってあるかどうか
-		XMFLOAT4    diffuse;
-		XMFLOAT4    ambient;
-		XMFLOAT4    speculer;
-		FLOAT       shininess;
+		//XMFLOAT4    diffuse;
+		//XMFLOAT4    ambient;
+	//	XMFLOAT4    speculer;
+		//FLOAT       shininess;
 	};
 
 	struct VERTEX
