@@ -18,8 +18,6 @@ void TestScene::Initialize()
 	Camera::SetPosition(XMVECTOR{ 3, 5, -10, 0 });
 	Camera::SetTarget(XMVECTOR{ 0, 0, 0, 0 });
 	Instantiate<Stage>(this);
-	//Instantiate<Ground>(this);
-	//Instantiate<Arrow>(this);
 }
 
 //çXêV

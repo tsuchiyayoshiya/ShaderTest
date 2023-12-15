@@ -6,7 +6,7 @@
 struct CBUFF_STAGESCENE
 {
     XMFLOAT4	lightPosition;
-    XMFLOAT4	eyePos;
+    XMFLOAT4	eyePosition;
 
 };
 
@@ -14,14 +14,9 @@ struct CBUFF_STAGESCENE
 class Stage : public GameObject
 {
     int hModel_;    //モデル番号
-    int hGround_;
-    int hLightBall_;
-    Transform trDonuts;
-    Transform trGround;
-    Transform trLightBall;
     ID3D11Buffer* pCBStageScene_;
     //Quad* q;
-    void IntConstantBuffer();
+    void InitConstantBuffer();
     XMFLOAT4	lightSourcePosition_;
 public:
     //コンストラクタ

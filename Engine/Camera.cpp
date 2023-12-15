@@ -50,7 +50,7 @@ void Camera::SetTarget(XMFLOAT3 target)
 
 XMVECTOR Camera::GetPosition()
 {
-	return (position_);
+	return position_;
 }
 
 //ƒrƒ…[s—ñ‚ğæ“¾
