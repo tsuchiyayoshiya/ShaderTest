@@ -32,7 +32,8 @@ class Fbx
 		XMFLOAT4	diffuse;			//拡散反射光（ディフューズ）への反射強度
 		XMFLOAT4	ambient;			//環境光（アンビエント）への反射強度
 		XMFLOAT4	specular;			//鏡面反射光（スペキュラ）への反射強度
-		Texture* pTexture;			//テクスチャ
+		Texture* pTexture;	
+				//テクスチャ
 	}*pMaterial_;
 
 	struct CONSTANT_BUFFER
@@ -69,6 +70,8 @@ class Fbx
 	void    IntConstantBuffer();	//コンスタントバッファ準備
 	void    InitMaterial(fbxsdk::FbxNode* pNode);
 	RENDER_STATE state_;
+	Texture* pToonTex_;
+
 public:
 	Fbx();
 	HRESULT Load(std::string fileName);
