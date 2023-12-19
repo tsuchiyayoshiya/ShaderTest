@@ -89,6 +89,7 @@ float4 PS(VS_OUT inData) : SV_Target
 
 	float4 tI = 0.1 * step(n1, inData.color) + 0.3 * step(n2, inData.color)
 			  + 0.3 * step(n3, inData.color) + 0.4 * step(n4, inData.color);
+	//float4 tI = g_toon_texture.Sample(g_sampler, uv);
 
 	if (isTextured == 0)
 	{
