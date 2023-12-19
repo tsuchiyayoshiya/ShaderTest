@@ -91,7 +91,7 @@ float4 PS(VS_OUT inData) : SV_Target
 			  + 0.3 * step(n3, inData.color) + 0.4 * step(n4, inData.color);
 
 	float2 uv;
-	uv.x = NL;
+	uv.x = inData.color.x;
 	uv.y = 0;
 
 	if (isTextured == 0)
